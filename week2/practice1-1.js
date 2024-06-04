@@ -27,6 +27,19 @@ function isSubstring(s1, s2) {
   return false;
 }
 
+/*나의 풀이
+function isSubstring(s1, s2) {
+  const length = s1.length;
+  for (let i = 0; i <= s2.length - length; i++) {
+    const slice = s2.slice(i, i + length);
+    if (slice === s1) {
+      return true;
+    }
+  }
+  return false;
+}
+ */
+
 // 테스트 코드
 function testIsSubstring() {
   const testCases = [

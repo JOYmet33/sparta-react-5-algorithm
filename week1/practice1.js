@@ -15,8 +15,6 @@
 // 입력: "hello World"
 // 출력: {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'W': 1, 'r': 1, 'd': 1}
 
-
-
 function countCharacters(s) {
   const result = new Map();
   for (let i = 0; i < s.length; i++) {
@@ -31,26 +29,52 @@ function countCharacters(s) {
   const answer = Object.fromEntries(result.entries());
   return answer;
 }
+/*나의 풀이
+let s = "hello world";
+
+function count(s) {
+  let answer = {};
+  for (let i = 0; i < s.length; i++) {
+    if (!answer[s[i]]) {
+      answer[s[i]] = 1;
+    } else {
+      answer[s[i]] += 1;
+    }
+  }
+  return answer;
+}
+
+console.log(count(s));
+
+ */
 
 // 테스트 코드
 function testCountCharacters() {
-    const testCases = [
-        { input: "hello world", expected: {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1} },
-        { input: "banana", expected: {'b': 1, 'a': 3, 'n': 2} },
-        { input: "", expected: {} },
-        { input: "aabbcc", expected: {'a': 2, 'b': 2, 'c': 2} },
-    ];
+  const testCases = [
+    {
+      input: "hello world",
+      expected: { h: 1, e: 1, l: 3, o: 2, " ": 1, w: 1, r: 1, d: 1 },
+    },
+    { input: "banana", expected: { b: 1, a: 3, n: 2 } },
+    { input: "", expected: {} },
+    { input: "aabbcc", expected: { a: 2, b: 2, c: 2 } },
+  ];
 
-    testCases.forEach(({input, expected}, index) => {
-        try {
-            const result = countCharacters(input);
-            const isEqual = JSON.stringify(result) === JSON.stringify(expected);
-            if (!isEqual) throw new Error(`Expected ${JSON.stringify(expected)}, but got ${JSON.stringify(result)}`);
-            console.log(`Test ${index + 1}: Passed`);
-        } catch (error) {
-            console.log(`Test ${index + 1}: Failed - ${error.message}`);
-        }
-    });
+  testCases.forEach(({ input, expected }, index) => {
+    try {
+      const result = countCharacters(input);
+      const isEqual = JSON.stringify(result) === JSON.stringify(expected);
+      if (!isEqual)
+        throw new Error(
+          `Expected ${JSON.stringify(expected)}, but got ${JSON.stringify(
+            result
+          )}`
+        );
+      console.log(`Test ${index + 1}: Passed`);
+    } catch (error) {
+      console.log(`Test ${index + 1}: Failed - ${error.message}`);
+    }
+  });
 }
 
 // 테스트 함수 호출 : 터미널에 node practice1.js 실행

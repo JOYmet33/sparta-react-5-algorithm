@@ -26,7 +26,54 @@
 // 결과적으로 arr = [5, 2]가 됩니다.
 
 // 함수 구현:
-function minimumNumberGame(nums) {}
+function minimumNumberGame(nums) {
+  let arr = [];
+  let minIndex = 0;
+  let Alice = 0;
+  // Alice 찾기
+  while (arr.length < nums.length) {
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] < nums[minIndex]) {
+        minIndex = i;
+      }
+    }
+    Alice = nums[minIndex]; // 최소값(=Alice) 찾았다.!
+    nums[minIndex] = Infinity; // 절대 최소값이 될 수 없는 수(=Infinity)로 최소값(=Alice)의 자리를 대체해!
+    //Bob 찾기
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] < nums[minIndex]) {
+        minIndex = i;
+      }
+    }
+    arr.push(nums[minIndex]); // 두번째 최소값(=Bob) 찾았고, 바로 결과배열 arr에 push! (두번째 최소값을 담을 변수 필요 없는 이유!)
+    arr.push(Alice); // 첫번째 최소값(=Alice) 찾았고, 바로 결과배열 arr에 push!
+    nums[minIndex] = Infinity; // 절대 최소값이 될 수 없는 수(=Infinity)로 두번째 최소값(=Bob)의 자리를 대체해!
+  }
+  return arr;
+}
+
+// 조금 더 어려운 코드
+// function minimumNumberGame(nums) {
+//   let arr = [];
+//   let [alice, bob] = [0,1];
+//   while(arr.length < nums.length) {
+//       [alice, bob] = [0,1];
+//       for(let i=0; i < nums.length; i++) {
+//           if(nums[i] < nums[alice]) {
+//               bob = alice;
+//               alice = i;
+//           }
+//           if(nums[i] < nums[bob] && i != alice) {
+//               bob = i;
+//           }
+//       }
+//       arr.push(nums[bob]);
+//       arr.push(nums[alice]);
+//       nums[alice] = Infinity;
+//       nums[bob] = Infinity;
+//   }
+//   return arr;
+// }
 
 // 테스트 코드
 function testMinimumNumberGame() {

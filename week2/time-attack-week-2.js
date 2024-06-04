@@ -18,9 +18,43 @@
 // 출력: "" (팰린드롬이 없으므로 빈 문자열 반환)
 
 function findLongestPalindrome(words) {
-  // 문제를 풀어주세요
-  // 힌트..! 팰린드롬 인지 체크하는 함수를 내부에 선언하고 사용을 하면 더 효율적입니다.!
-  // e.g) function isPalindrome(str) {}
+  let reg = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gim;
+  // let answer = words.filter((word) => {
+  //   let newWord = word.toUpperCase().replace(reg, "");
+  //   let splitedWord = [...newWord];
+  //   let reversedWord = [];
+  //   for (let i = splitedWord.length - 1; i >= 0; i--) {
+  //     reversedWord.push(splitedWord[i]);
+  //   }
+  //   return newWord === reversedWord.join("");
+  // });
+  // if (answer.length === 0) {
+  //   return "";
+  // }
+  let answer = words.filter((word) => {
+    let newWord = word.toUpperCase().replace(reg, "");
+    let left = 0;
+    let right = newWord.length - 1;
+    while (left < right) {
+      if (newWord[left] !== newWord[right]) {
+        return false;
+      }
+      left = left + 1;
+      right = right - 1;
+    }
+    return true;
+  });
+  answer = answer.sort((a, b) => {
+    // if (a.length < b.length) {
+    //   return 1; // a가 b보다 앞에 옴
+    // } else if (a.length > b.length) {
+    //   return -1; // b가 a보다 앞에 옴
+    // } else {
+    //   return 0; // a와 b의 길이가 같음
+    // }
+    return b.length - a.length;
+  });
+  return answer[0];
 }
 
 // 테스트 코드
