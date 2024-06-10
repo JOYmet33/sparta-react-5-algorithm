@@ -20,7 +20,18 @@
 // 출력: 3
 // 설명: F(4) = F(3) + F(2) = 2 + 1 = 3.
 
-function fibonacci(n) {}
+function fibonacci(n) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// n===5
+// 5 ; 1 + 0 +1 + 1 + 0 +1 + 0 +1 = 5
+// 4 ; fibonacci(1) + fibonacci(0) /+ 1 /+ 1 /+ 0 /+1 /+ 0 /+1
+// 3 ; fibonacci(2) + fibonacci(1) /+ fibonacci(1) + fibonacci(0) /+fibonacci(1) + fibonacci(0) /+ 1
+// 2 ; fibonacci(3) + fibonacci(2) /+ fibonacci(2) + fibonacci(1)
+// 1 ; fibonacci(4) + fibonacci(3)
 
 // 테스트 코드
 function testFibonacci() {

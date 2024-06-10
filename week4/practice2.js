@@ -18,7 +18,10 @@
 // 출력: 24
 // 설명: 4! = 4 * 3 * 2 * 1 = 24
 
-function factorial(n) {}
+function factorial(n) {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
+}
 
 // 테스트 코드
 function testFactorial() {
