@@ -20,7 +20,35 @@
 // closestSum([-1, 2, 1, -4], 1); // 0 (최대한 가까운 경우: -1 + 1 = 0)
 
 // 함수 구현:
-function closestSum(nums, target) {}
+function closestSum(nums, target) {
+  /** 문제풀이 계획
+   * 모든 '두 원소의 합'을 구하고, 그 값을 빈 배열에 넣는다
+   * 빈 배열의 원소 중 target과 같거나 크지 않으면서 가장 가까운 수(index)를 찾는다
+   */
+  let sums = [];
+  let numsSum = 0;
+  let answer = Infinity;
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      numsSum = nums[i] + nums[j];
+      // 조건1. numsSum과 target이 같지 않아야 한다.
+      if (numsSum === target) {
+        continue;
+      }
+      // 조건2. 가장 가까운 거리를 구해야 한다 - Math.abs(a-b), Infinity
+      let minusNumsSum = Math.abs(numsSum - target);
+      let minusAnswer = Math.abs(answer - target);
+      if (minusNumsSum < minusAnswer) {
+        answer = numsSum;
+      }
+      // 조건3. (만약 거리가 동일하다면) 둘 중 더 작은 수를 찾는다.
+      if (minusNumsSum === minusAnswer && numsSum < answer) {
+        answer = numsSum;
+      }
+    }
+  }
+  return answer;
+}
 
 // 테스트 코드:
 function testClosestSum() {
